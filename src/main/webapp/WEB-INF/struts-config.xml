@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<struts-config>
+
+<!-- ==================================== Data Source Configuration -->
+
+<!--
+ <data-sources>
+   <data-source>
+     <set-property
+        property="autoCommit"
+        value="false"/>
+     <set-property
+        property="description"
+        value="Example Data Source Configuration"/>
+     <set-property
+        property="driverClass"
+        value="org.postgresql.Driver"/>
+     <set-property
+        property="maxCount"
+        value="4"/>
+     <set-property
+        property="minCount"
+        value="2"/>
+     <set-property
+        property="password"
+        value="mypassword"/>
+     <set-property
+        property="url"
+        value="jdbc:postgresql://localhost/mydatabase"/>
+     <set-property
+        property="user"
+        value="myusername"/>
+   </data-source>
+ </data-sources>
+-->
+
+<!-- ======================================== Form Bean Definitions -->
+
+    <form-beans>
+        <form-bean
+            name="loginForm"
+            type="com.oreilly.struts.banking.form.LoginForm">
+        </form-bean>
+       <form-bean
+            name="accountInformationForm"
+            type="org.apache.struts.action.DynaActionForm" >
+            <form-property name="accounts" type="java.util.ArrayList" />
+       </form-bean>
+       <form-bean
+            name="accountDetailForm"
+            type="org.apache.struts.action.DynaActionForm" >
+            <form-property
+              name="view"
+              type="com.oreilly.struts.banking.view.AccountDetailView" />
+       </form-bean>
+    </form-beans>
+
+<!-- ================================= Global Exception Definitions -->
+
+    <global-exceptions>
+        <exception
+        	key="global.error.invalidlogin"
+        	path="/login.jsp"
+        	scope="request"
+        	type="com.oreilly.struts.banking.service.InvalidLoginException" />
+    </global-exceptions>
+
+<!-- =================================== Global Forward Definitions -->
+
+    <global-forwards>
+        <!-- Default forward to "Welcome" action -->
+        <!-- Demonstrates using index.jsp to forward -->
+        <forward
+            name="welcome"
+            path="/Welcome.do"/>
+        <forward name="login" path="/login.do" />
+        <forward name="SystemFailure" path="/systemerror.jsp" />
+        <forward name="SystemFailure" path="/sessiontimeout.jsp" />
+     </global-forwards>
+
+<!-- =================================== Action Mapping Definitions -->
+
+    <action-mappings>
+            <!-- Default "Welcome" action -->
+            <!-- Forwards to Welcome.jsp -->
+      <action
+        path="/Welcome"
+        type="org.apache.struts.actions.ForwardAction"
+        parameter="/pages/Welcome.jsp"/>
+	    <action
+	    	path="/login"
+	    	type="com.oreilly.struts.banking.action.LoginAction"
+	    	scope="request"
+	    	name="loginForm"
+	    	validate="true"
+	    	input="/login.jsp">
+	    	<forward name="Success" path="/action/getaccountinformation.do" redirect="true" />
+	    	<forward name="Failure" path="/login.jsp" redirect="true" />
+	    </action>
+	    <action
+	    	path="/logout"
+	    	type="com.oreilly.struts.banking.action.LogoutAction"
+	    	scope="request">
+	    	<forward name="Success" path="/login.jsp" redirect="true" />
+	    </action>
+	    <action
+	    	path="/action/getaccountinformation"
+	    	type="org.apache.struts.actions.ForwardAction"
+	    	parameter="/index.jsp"/>
+	    <!--
+	    <action
+	    	path="/action/getaccountinformation"
+	    	type="org.apache.struts.actions.ForwardAction"
+	    	scope="request">
+	    	<forward name="Success" path="/pages/Welcome.jsp" redirect="true" />
+	    </action>
+	     -->
+	</action-mappings>
+
+<!-- ===================================== Controller Configuration -->
+
+    <controller
+       processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+
+<!-- ================================ Message Resources Definitions -->
+
+    <message-resources parameter="resources.application"/>
+
+<!-- ======================================= Plug Ins Configuration -->
+
+  <!-- ========== Tiles plugin ===================  -->
+  
+  
+  <!-- comment following if struts1.0.x -->
+  <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+    <set-property property="definitions-config" 
+	                 value="/WEB-INF/tiles-defs.xml" />
+    <set-property property="moduleAware" value="true" />
+    <set-property property="definitions-parser-validate" value="true" />
+  </plug-in>
+  
+  <!-- end comment if struts1.0.x -->
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property
+        property="pathnames"
+        value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+  </plug-in>
+  
+</struts-config>
