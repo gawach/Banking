@@ -24,7 +24,7 @@ public class LoginForm extends ActionForm {
 		resetFields();
 	}
 	
-	/*
+	/* 
 	 * ユーザがaccessNumberとpinNumberフィールドに入力した値を検証するために
 	 * フレームワークが呼び出す
 	 */

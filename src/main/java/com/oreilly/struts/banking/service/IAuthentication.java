@@ -3,19 +3,21 @@ package com.oreilly.struts.banking.service;
 import com.oreilly.struts.banking.exception.InvalidLoginException;
 import com.oreilly.struts.banking.view.UserView;
 
+import net.sf.hibernate.HibernateException;
+
 /**
- * バンキングセキュリティサービスが実装すべきメソッドを提供する
+ * 
  */
 public interface IAuthentication {
 	/**
-	 * ユーザがオンラインバンキングアプリケーションにログインするときに、
-	 * loginメソッドは呼び出される
-	 * @param accessNumber- 口座アクセス番号
-	 * @param pin- 口座暗証番号
-	 * @returns ユーザの個人データを表現するDTOオブジェクト
-	 * @throws InvalidLoginException 身元証明が正しくない場合
+	 * 
+	 * 
+	 * @param accessNumber- 
+	 * @param pin- 
+	 * @returns 
+	 * @throws InvalidLoginException 
 	 */
 	public UserView login( String accessNumber, String pin)
-	  throws InvalidLoginException;
+	  throws InvalidLoginException, HibernateException;
 
 }

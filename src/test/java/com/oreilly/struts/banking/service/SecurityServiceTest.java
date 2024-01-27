@@ -13,15 +13,26 @@ public class SecurityServiceTest {
 	private SecurityService securityService = new SecurityService();
 	
 	@Test
-	private void 豁｣蟶ｸ縺ｪ繝ｭ繧ｰ繧､繝ｳ蜃ｦ逅�() throws InvalidLoginException {
+	public void ログイン成功() throws Exception {
+		String expected = "田中";
 		String accessNumber = "123456789";
 		String pinNumber = "1111";
 		UserView userView = securityService.login(accessNumber, pinNumber);
 		
-		String expected = "逕ｰ荳ｭ";
 		String actual = userView.getName();
-		
 		assertThat(actual, is(expected));
+	}
+	
+	@Test
+	public void ログイン失敗_アクセス番号とPIN番号の不一致() throws Exception {
+		String accessNumber = "123456789";
+		String pinNumber = "0000";
+		try {
+			UserView userView = securityService.login(accessNumber, pinNumber);
+			fail("期待していた例外が発生しませんでした");
+		} catch(InvalidLoginException e) {
+			assertThat(e.getMessage(), is("Mismatch input value " + accessNumber + ":" + pinNumber));
+		}
 	}
 
 }

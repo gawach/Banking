@@ -7,33 +7,25 @@ import com.oreilly.struts.banking.entity.member.MemberMgr;
 import com.oreilly.struts.banking.exception.InvalidLoginException;
 import com.oreilly.struts.banking.view.UserView;
 
+import net.sf.hibernate.HibernateException;
+
 public class SecurityService implements IAuthentication{
 	
-	public UserView login( String accessNumber, String pin) throws InvalidLoginException {
+	public UserView login( String accessNumber, String pin) throws InvalidLoginException, HibernateException {
 		UserView userView = null;
 
-		try {
-			// ユーザーの取得
 			Member member = new MemberMgr().find(accessNumber);
 			
-			// 口座の取得
 			Account account = new AccountMgr().find(member.getId());
 
-			// 値の検証
 			if(!(pin.equals(member.getPinNumber()))) {
-				// ログイン方法が正しくない場合、InvalidExceptionを発生させる
-				// ログファイルに挿入するメッセージを生成する
-				String msg = "Invalid Login Attempt by " + accessNumber + ":" + pin;
+				String msg = "Mismatch input value " + accessNumber + ":" + pin;
 				throw new InvalidLoginException( msg );
 			}
 			else {
 				userView = new UserView(member.getId(), member.getName(), account.getBalance());
 			}
-		} catch(Exception e) {
-			//throw new InvalidLoginException("口座の取得に失敗しました。");
-			e.printStackTrace();
-		} finally {
+
 			return userView;
-		}
 	}
 }

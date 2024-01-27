@@ -23,35 +23,35 @@ public class LoginAction extends Action {
 																 HttpServletRequest request,
 																 HttpServletResponse response)
 																		 throws Exception {
-    	// å®Œäº†æ™‚ã«è¿”ã•ã‚Œã‚‹ActionForward
+    	// Š®—¹‚É•Ô‚³‚ê‚éActionForward
     	ActionForward foward = null;
     	UserView userView = null;
     	
-    	// LoginFormã‹ã‚‰èº«åˆ†è¨¼æ˜ã‚’å–å¾—ã™ã‚‹
-  		// å…¥åŠ›å€¤ãƒã‚§ãƒƒã‚¯
-			// ã‚¨ãƒ©ãƒ¼å†…å®¹ã‚’ã‚»ãƒƒã‚·ãƒ§ãƒ³ã«è©°ã‚ã‚‹
+    	// LoginForm‚©‚çg•ªØ–¾‚ğæ“¾‚·‚é
+  		// “ü—Í’lƒ`ƒFƒbƒN
+			// ƒGƒ‰[“à—e‚ğƒZƒbƒVƒ‡ƒ“‚É‹l‚ß‚é
     	String accessNbr = ((LoginForm) form).getAccessNumber();
     	String pinNbr = ((LoginForm) form).getPinNumber();
     	
     	/*
-    	 * å®Ÿéš›ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã§ã¯ã€é€šå¸¸JNDIã‚„ãƒ•ã‚¡ã‚¯ãƒˆãƒªãªã©ã‹ã‚‰
-    	 * ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£ã‚µãƒ¼ãƒ“ã‚¹ã®å‚ç…§ã‚’å–å¾—ã™ã‚‹
+    	 * ÀÛ‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Å‚ÍA’ÊíJNDI‚âƒtƒ@ƒNƒgƒŠ‚È‚Ç‚©‚ç
+    	 * ƒZƒLƒ…ƒŠƒeƒBƒT[ƒrƒX‚ÌQÆ‚ğæ“¾‚·‚é
     	 */
     	IAuthentication service = new SecurityService();
     	
-    	// ãƒ­ã‚°ã‚¤ãƒ³ã‚’è¡Œã†
+    	// ƒƒOƒCƒ“‚ğs‚¤
     	userView = service.login(accessNbr, pinNbr);
     	
-    	// æ—¢å­˜ã®ã‚»ãƒƒã‚·ãƒ§ãƒ³ãŒã‚ã‚Œã°ã€ç„¡åŠ¹ã«ã™ã‚‹
+    	// Šù‘¶‚ÌƒZƒbƒVƒ‡ƒ“‚ª‚ ‚ê‚ÎA–³Œø‚É‚·‚é
     	HttpSession session = request.getSession(false);
     	if(session != null) {
     		session.invalidate();
     	}
     	
-    	// ãƒ¦ãƒ¼ã‚¶ç”¨ã®æ–°ã—ã„ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚’ç”Ÿæˆã™ã‚‹
+    	// ƒ†[ƒU—p‚ÌV‚µ‚¢ƒZƒbƒVƒ‡ƒ“‚ğ¶¬‚·‚é
     	session = request.getSession(true);
     	
-    	// UserViewã‚’ã‚»ãƒƒã‚·ãƒ§ãƒ³ã«æ ¼ç´ã—ã¦æˆ»ã‚‹
+    	// UserView‚ğƒZƒbƒVƒ‡ƒ“‚ÉŠi”[‚µ‚Ä–ß‚é
     	session.setAttribute(IConstants.USER_VIEW_KEY, userView);
     	foward = mapping.findForward(IConstants.SUCCESS_KEY);
     	return foward;
