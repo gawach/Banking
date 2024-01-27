@@ -1,5 +1,6 @@
 package com.oreilly.struts.banking.service;
 
+import com.oreilly.struts.banking.exception.InvalidLoginException;
 import com.oreilly.struts.banking.view.UserView;
 
 /**

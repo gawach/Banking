@@ -4,6 +4,7 @@ import com.oreilly.struts.banking.entity.account.Account;
 import com.oreilly.struts.banking.entity.account.AccountMgr;
 import com.oreilly.struts.banking.entity.member.Member;
 import com.oreilly.struts.banking.entity.member.MemberMgr;
+import com.oreilly.struts.banking.exception.InvalidLoginException;
 import com.oreilly.struts.banking.view.UserView;
 
 public class SecurityService implements IAuthentication{
