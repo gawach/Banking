@@ -14,9 +14,10 @@ public class SecurityServiceTest {
 	
 	@Test
 	public void ログイン成功() throws Exception {
-		String expected = "田中";
 		String accessNumber = "123456789";
 		String pinNumber = "1111";
+		String expected = "田中";
+
 		UserView userView = securityService.login(accessNumber, pinNumber);
 		
 		String actual = userView.getName();
@@ -27,11 +28,15 @@ public class SecurityServiceTest {
 	public void ログイン失敗_アクセス番号とPIN番号の不一致() throws Exception {
 		String accessNumber = "123456789";
 		String pinNumber = "0000";
+		String fail_msg = "期待していた例外が発生しませんでした";
+		String expected = "Mismatch input value " + accessNumber + ":" + pinNumber;
+		
 		try {
 			UserView userView = securityService.login(accessNumber, pinNumber);
-			fail("期待していた例外が発生しませんでした");
+			fail(fail_msg);
 		} catch(InvalidLoginException e) {
-			assertThat(e.getMessage(), is("Mismatch input value " + accessNumber + ":" + pinNumber));
+			String actual = e.getMessage();
+			assertThat(actual, is(expected));
 		}
 	}
 
