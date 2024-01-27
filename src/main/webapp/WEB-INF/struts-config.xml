@@ -67,7 +67,7 @@
         	key="global.error.invalidlogin"
         	path="/login.jsp"
         	scope="request"
-        	type="com.oreilly.struts.banking.service.InvalidLoginException" />
+        	type="com.oreilly.struts.banking.exception.InvalidLoginException" />
     </global-exceptions>
 
 <!-- =================================== Global Forward Definitions -->
