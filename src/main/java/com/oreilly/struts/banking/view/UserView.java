@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * ユーザのセキュリティ情報すべてをラッピングする値オブジェクト
+ * 
  */
 public class UserView implements java.io.Serializable {
 	
@@ -14,7 +14,6 @@ public class UserView implements java.io.Serializable {
 	
 	private Integer balance;
 	
-	// Stringoオブジェクトpermissionの一意コレクション
 	private Set permissions = null;
 	
 	public UserView(Integer id, String name, int balance) {
@@ -57,5 +56,4 @@ public class UserView implements java.io.Serializable {
 		this.balance = balance;
 	}
 
-	
 }
