@@ -12,20 +12,20 @@ import net.sf.hibernate.HibernateException;
 public class SecurityService implements IAuthentication{
 	
 	public UserView login( String accessNumber, String pin) throws InvalidLoginException, HibernateException {
-		UserView userView = null;
+	  UserView userView = null;
 
-			Member member = new MemberMgr().find(accessNumber);
-			
-			Account account = new AccountMgr().find(member.getId());
+		Member member = new MemberMgr().find(accessNumber);
+		
+		Account account = new AccountMgr().find(member.getId());
 
-			if(!(pin.equals(member.getPinNumber()))) {
-				String msg = "Mismatch input value " + accessNumber + ":" + pin;
-				throw new InvalidLoginException( msg );
-			}
-			else {
-				userView = new UserView(member.getId(), member.getName(), account.getBalance());
-			}
-
-			return userView;
+		if(!(pin.equals(member.getPinNumber()))) {
+			String msg = "Mismatch input value " + accessNumber + ":" + pin;
+			throw new InvalidLoginException( msg );
+		}
+		else {
+			userView = new UserView(member.getId(), member.getName(), account.getBalance());
+		}
+		
+		return userView;
 	}
 }

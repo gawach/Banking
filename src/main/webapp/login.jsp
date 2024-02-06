@@ -5,7 +5,7 @@
 	<head>
 		<html:base/>
 		<title><bean:message key="title.login" /></title>
-		<link rel="stylesheet" href="stylesheets/login_style_ie.css" type="text/css">
+		<link rel="stylesheet" href="stylesheets/login_style.css" type="text/css">
 	</head>
 	<body topmargin="0" leftmargin="5" marginheight="0" marginwidth="0" bgcolor="#6699FF">
 		<html:form action="login" focus="accessNumber">

@@ -28,12 +28,12 @@ public class SecurityServiceTest {
 	public void ログイン失敗_アクセス番号とPIN番号の不一致() throws Exception {
 		String accessNumber = "123456789";
 		String pinNumber = "0000";
-		String fail_msg = "期待していた例外が発生しませんでした";
+		String failMsg = "期待していた例外が発生しませんでした";
 		String expected = "Mismatch input value " + accessNumber + ":" + pinNumber;
 		
 		try {
 			UserView userView = securityService.login(accessNumber, pinNumber);
-			fail(fail_msg);
+			fail(failMsg);
 		} catch(InvalidLoginException e) {
 			String actual = e.getMessage();
 			assertThat(actual, is(expected));
