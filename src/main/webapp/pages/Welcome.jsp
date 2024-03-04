@@ -4,7 +4,8 @@
 
 <html:html locale="true">
 <head>
-<title><bean:message key="welcome.title"/></title>
+	<title><bean:message key="welcome.title"/></title>
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/stylesheets/welcome.css" type="text/css">
 <html:base/>
 </head>
 <body bgcolor="white">
@@ -18,9 +19,10 @@
 
 <h3><bean:message key="welcome.heading"/></h3>
 <p><bean:message key="welcome.message"/></p>
-<p>Hello, World!</p>
-<p><html:link page="/login.jsp">login</html:link></p>
+<p class = "hello">Hello, World!</p>
+<p><html:link page="/pages/login.jsp">login</html:link></p>
 
+<%-- コメントアウト --%>
 
 </body>
 </html:html>

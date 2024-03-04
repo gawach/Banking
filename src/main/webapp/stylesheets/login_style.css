@@ -1,4 +1,18 @@
-.fieldlabel {
+body{
+	 margin-top: 0;
+	 margin-left: 5;
+}
+
+table{
+	border:0;
+	width: 100%;
+}
+
+td{
+	height: 10px;
+}
+
+.fieldlabel{
 	font-style: bold;
 	color: gray;
 }

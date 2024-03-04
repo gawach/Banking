@@ -111,7 +111,7 @@
 	    <action
 	    	path="/action/getaccountinformation"
 	    	type="org.apache.struts.actions.ForwardAction"
-	    	parameter="/index.jsp"/>
+	    	parameter="/pages/top.jsp"/>
 	    <!--
 	    <action
 	    	path="/action/getaccountinformation"

@@ -5,7 +5,7 @@
   "http://java.sun.com/j2ee/dtds/web-app_2_2.dtd">
 
 <web-app>
-  <display-name>Struts Blank Application</display-name>
+  <display-name>Banking Application</display-name>
   
   <!-- Standard Action Servlet Configuration (with debugging) -->
   <servlet>
@@ -36,7 +36,7 @@
 
   <!-- The Usual Welcome File List -->
   <welcome-file-list>
-    <welcome-file>/pages/Welcome.jsp</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
 
 

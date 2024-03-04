@@ -1,0 +1,10 @@
+main {
+  height: 1000px;
+  width: 60%;
+  margin-left:  20%;
+  margin-right: 20%;
+}
+.fieldlabel {
+	font-style: bold;
+	color: gray;
+}
